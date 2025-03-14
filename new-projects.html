@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekt - Sjöbo Schakt</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    /* Project Page Specific Styles */
+    body {
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    
+    .project-section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-weight: 500;
+      margin-bottom: 50px;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary-color);
+    }
+    
+    .project-card {
+      background: white;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      height: 100%;
+      margin-bottom: 30px;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card .card-img-container {
+      height: 220px;
+      overflow: hidden;
+    }
+    
+    .project-card .card-img-top {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .project-card:hover .card-img-top {
+      transform: scale(1.05);
+    }
+    
+    .project-card .card-body {
+      padding: 20px;
+    }
+    
+    .project-card .card-title {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    .project-card .card-text {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 15px;
+    }
+    
+    .project-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      color: #495057;
+      background-color: #e9ecef;
+      padding: 5px 10px;
+      border-radius: 4px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+    
+    .tag-status {
+      background-color: #e3f2fd;
+      color: #0d6efd;
+    }
+    
+    .tag-category {
+      background-color: #f1f8e9;
+      color: #689f38;
+    }
+    
+    .filter-container {
+      margin-bottom: 40px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .filter-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #495057;
+    }
+    
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      background: none;
+      border: 1px solid #dee2e6;
+      color: #495057;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .filter-btn:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .filter-btn.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .hero {
+      min-height: 40vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-position: center;
+      background-size: cover;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 40px 0;
+    }
+    
+    .hero h1 {
+      color: white;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+    
+    .breadcrumb {
+      margin: 0;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="new-index.html">
+          <img src="images/ss_1c.jpg" alt="Sjöbo Schakt Logo" class="d-inline-block align-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="new-index.html">Hem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="new-about.html">Om oss</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="new-services.html">Tjänster</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="new-projects.html">Projekt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="new-contact.html">Kontakt</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="hero" style="background-image: url('images/cirkus.jpg');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center hero-content">
+          <h1>Projekt</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a href="new-index.html" class="text-white">Hem</a></li>
+              <li class="breadcrumb-item active text-white" aria-current="page">Projekt</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="project-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6 text-center">
+          <h2 class="section-title">Våra projekt</h2>
+          <p class="text-muted">Utforska våra aktuella och tidigare projekt</p>
+        </div>
+      </div>
+      
+      <!-- Filter Container -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="filter-container">
+            <span class="filter-label">Filtrera:</span>
+            <div class="filter-buttons">
+              <button type="button" class="filter-btn active" data-filter="all">Alla</button>
+              <button type="button" class="filter-btn" data-filter="mark">Markarbeten</button>
+              <button type="button" class="filter-btn" data-filter="va">VA-arbeten</button>
+              <button type="button" class="filter-btn" data-filter="betong">Betonggjutning</button>
+              <button type="button" class="filter-btn" data-filter="asfalt">Asfaltering</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects Grid -->
+      <div class="row">
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6 project-item mark">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/cirkus.jpg" class="card-img-top" alt="Cirkustomten, Kävlinge">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Cirkustomten, Kävlinge</h5>
+              <p class="card-text">Schakt- och anläggningsarbete för nybyggnation</p>
+              <div>
+                <span class="project-tag tag-status">Pågående</span>
+                <span class="project-tag tag-category">Markarbeten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6 project-item mark">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/sirius3-2.jpg" class="card-img-top" alt="Sirius 3, Malmö">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Sirius 3, Malmö</h5>
+              <p class="card-text">Spont-, schakt- och saneringsarbete</p>
+              <div>
+                <span class="project-tag tag-status">Pågående</span>
+                <span class="project-tag tag-category">Markarbeten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6 project-item mark">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/sold13.jpg" class="card-img-top" alt="Soldaten 13, Lund">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Soldaten 13, Lund</h5>
+              <p class="card-text">Schakt- och anläggningsarbete i stadsmiljö</p>
+              <div>
+                <span class="project-tag tag-status">Slutfört</span>
+                <span class="project-tag tag-category">Markarbeten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 4 -->
+        <div class="col-lg-4 col-md-6 project-item betong va">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/bommen1-2.jpg" class="card-img-top" alt="Bommen 1, Malmö">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Bommen 1, Malmö</h5>
+              <p class="card-text">Schakt och anläggningsarbete för nybyggnation</p>
+              <div>
+                <span class="project-tag tag-status">Pågående</span>
+                <span class="project-tag tag-category">Betong & VA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 5 -->
+        <div class="col-lg-4 col-md-6 project-item asfalt">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/krem3.jpg" class="card-img-top" alt="Gjuterian, Sjöbo">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Gjuterian, Sjöbo</h5>
+              <p class="card-text">Schakt-, gjutnings- och asfalteringsarbete</p>
+              <div>
+                <span class="project-tag tag-status">Slutfört</span>
+                <span class="project-tag tag-category">Asfaltering</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 6 -->
+        <div class="col-lg-4 col-md-6 project-item va">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/oo4.jpg" class="card-img-top" alt="Thulehem, Lund">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Thulehem, Lund</h5>
+              <p class="card-text">VA-arbeten i äldre bostadsområde</p>
+              <div>
+                <span class="project-tag tag-status">Slutfört</span>
+                <span class="project-tag tag-category">VA-arbeten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 7 -->
+        <div class="col-lg-4 col-md-6 project-item mark va">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/forskarhotlu.jpg" class="card-img-top" alt="Forskarhotellet, Lund">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Forskarhotellet, Lund</h5>
+              <p class="card-text">Schakt- och anläggningsarbete vid universitet</p>
+              <div>
+                <span class="project-tag tag-status">Slutfört</span>
+                <span class="project-tag tag-category">Mark & VA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 8 -->
+        <div class="col-lg-4 col-md-6 project-item mark">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/lokst2x.jpg" class="card-img-top" alt="Kölen & Tankloket, Malmö">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Kölen & Tankloket, Malmö</h5>
+              <p class="card-text">Schakt- och saneringsarbete i industrimiljö</p>
+              <div>
+                <span class="project-tag tag-status">Pågående</span>
+                <span class="project-tag tag-category">Markarbeten</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Project 9 -->
+        <div class="col-lg-4 col-md-6 project-item mark betong">
+          <div class="project-card">
+            <div class="card-img-container">
+              <img src="images/stapelbd6m.jpg" class="card-img-top" alt="Stapelbädden 6, Malmö">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Stapelbädden 6, Malmö</h5>
+              <p class="card-text">Schakt- och anläggningsarbete i Västra Hamnen</p>
+              <div>
+                <span class="project-tag tag-status">Slutfört</span>
+                <span class="project-tag tag-category">Mark & Betong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="mb-3">Har du ett projekt som behöver vår expertis?</h3>
+          <p class="mb-4 text-muted">Kontakta oss för en kostnadsfri offert</p>
+          <a href="new-contact.html" class="btn btn-primary">Kontakta oss</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h5>Om Sjöbo Schakt</h5>
+          <p>En anläggningsfirma med stor kunskap och lång erfarenhet inom markanläggning, VA-arbeten och finplanering. Vi arbetar i hela Skåneregionen.</p>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h5>Länkar</h5>
+          <ul class="list-unstyled">
+            <li><a href="new-index.html">Hem</a></li>
+            <li><a href="new-about.html">Om oss</a></li>
+            <li><a href="new-services.html">Tjänster</a></li>
+            <li><a href="new-projects.html">Projekt</a></li>
+            <li><a href="new-contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5>Tjänster</h5>
+          <ul class="list-unstyled">
+            <li><a href="new-services.html">Markanläggning</a></li>
+            <li><a href="new-services.html">VA-arbeten</a></li>
+            <li><a href="new-services.html">Betonggjutning</a></li>
+            <li><a href="new-services.html">Asfaltering</a></li>
+            <li><a href="new-services.html">Grundförstärkning</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5>Kontakt</h5>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-map-marker-alt me-2"></i> Ingenjörsgatan 2, 275 39 Sjöbo</li>
+            <li><i class="fas fa-phone me-2"></i> 046-211 06 76</li>
+            <li><i class="fas fa-fax me-2"></i> 046-211 60 90</li>
+            <li><i class="fas fa-envelope me-2"></i> sjoboschakt@telia.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p> 2025 Sjöbo Schakt AB. Org.nr: 556812-1551</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Project filtering
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const projectItems = document.querySelectorAll('.project-item');
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          
+          // Add active class to clicked button
+          button.classList.add('active');
+          
+          const filterValue = button.getAttribute('data-filter');
+          
+          // Show/hide project items based on filter
+          projectItems.forEach(item => {
+            if (filterValue === 'all') {
+              item.style.display = 'block';
+            } else if (item.classList.contains(filterValue)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
